@@ -45,11 +45,16 @@ export class TasksService {
     if (currentUser.id !== task.userId) {
       throw new UnauthorizedException('Sorry you are not the owner');
     }
-    await this.db.task.update({
+
+    // validate assigned  user is exist or not
+    updateTaskDto.assignedUserId &&
+      (await this.checkUserIdIsExist(updateTaskDto.assignedUserId));
+
+    const updated = await this.db.task.update({
       where: { id },
       data: updateTaskDto,
     });
-    return task;
+    return updated;
   }
 
   async remove(id: number) {
@@ -68,7 +73,6 @@ export class TasksService {
 
   async getAllForCurrentUser() {
     const currentUser = this.appStorage.get('user');
-
     const tasks = await this.db.task.findMany({
       where: { userId: currentUser?.id },
     });

@@ -7,6 +7,16 @@ import {
   Min,
 } from 'class-validator';
 
+enum status {
+  open = 'open',
+  inProgress = 'inProgress',
+  closed = 'closed',
+}
+enum priority {
+  low = 'low',
+  medium = 'medium',
+  high = 'high',
+}
 export class CreateTaskDto {
   @IsString()
   @IsNotEmpty()
@@ -17,17 +27,12 @@ export class CreateTaskDto {
   description: string;
 
   @IsNotEmpty()
-  @IsEnum(['open', 'inProgress', 'closed'], {
-    message:
-      'status must be one of the following values : open, inProgress, closed',
-  })
+  @IsEnum(status)
   status: string;
 
   @IsString()
   @IsNotEmpty()
-  @IsEnum(['low', 'medium', 'high'], {
-    message: 'priority must be one of the following values : low, medium, high',
-  })
+  @IsEnum(priority)
   priority: string;
 
   @IsNotEmpty()
