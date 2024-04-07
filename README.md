@@ -24,7 +24,7 @@ http://localhost:3000/api
 $ npm run db:reset
 ```
 
-##  Seed inital data
+## (Optional) Seed inital data
 ```bash
 $ npm run db:seed
 ```
