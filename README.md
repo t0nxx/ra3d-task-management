@@ -19,9 +19,14 @@ $ npm run start:dev
 
 http://localhost:3000/api
 
+## Init and clean db
+```bash
+$ npm run db:reset
+```
+
 ##  Seed inital data
 ```bash
-$ npm run seed
+$ npm run db:seed
 ```
 
 
