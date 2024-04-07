@@ -1,10 +1,9 @@
 import {
   IsEnum,
   IsNotEmpty,
-  IsNumber,
   IsOptional,
   IsString,
-  Min,
+  IsUUID,
 } from 'class-validator';
 
 enum status {
@@ -39,7 +38,6 @@ export class CreateTaskDto {
   dueDate: Date;
 
   @IsOptional()
-  @IsNumber()
-  @Min(1)
-  assignedUserId: number;
+  @IsUUID()
+  assignedUserId?: string;
 }

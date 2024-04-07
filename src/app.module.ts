@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { TasksModule } from './tasks/tasks.module';
 import { UsersModule } from './users/users.module';
 import { ClsModule } from 'nestjs-cls';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { SocketGatewayGateway } from './realtime-gateway/socket-gateway.gateway';
 
 @Module({
   imports: [
@@ -16,8 +18,9 @@ import { ClsModule } from 'nestjs-cls';
         mount: true,
       },
     }),
+    EventEmitterModule.forRoot(),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, SocketGatewayGateway],
 })
 export class AppModule {}

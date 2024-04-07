@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   email     String   @unique
   name      String
   password  String
@@ -24,16 +24,16 @@ model User {
 }
 
 model Task {
-  id          Int    @id @default(autoincrement())
+  id          String   @id @default(uuid())
   title       String
   description String
   status      String
   priority    String
   dueDate     DateTime
-  userId      Int
+  userId      String
 
   // i assume that each task has one assignee only
-  assignedUserId Int?
+  assignedUserId String?
 
   User User? @relation(fields: [userId], references: [id])
 
